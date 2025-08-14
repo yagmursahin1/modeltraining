@@ -205,7 +205,7 @@ def create_enhanced_model():
 
     return enhanced_model
 
-def train_enhanced_yolo(data_yaml, epochs=300, imgsz=640, batch=16):
+def train_enhanced_yolo(data_yaml, epochs=300, imgsz=640, batch=8):
     """Enhanced YOLO training"""
 
     print("Enhanced YOLO model oluşturuluyor...")
@@ -270,7 +270,7 @@ def evaluate_model(model, data_yaml):
     print("Model değerlendiriliyor...")
 
     # Validation
-    val_results = model.val(data=data_yaml, imgsz=640, batch=16, conf=0.001, iou=0.6)
+    val_results = model.val(data=data_yaml, imgsz=640, batch=8, conf=0.001, iou=0.6)
 
     print(f"Validation Results:")
     print(f"mAP50: {val_results.box.map50:.4f}")
@@ -297,7 +297,7 @@ def visualize_results():
             print(f"Prediction: {img_path}")
             display(Image(str(img_path)))
 
-def main_custom_dataset(dataset_path=None, yaml_path=None, epochs=300, batch=16, imgsz=640):
+def main_custom_dataset(dataset_path=None, yaml_path=None, epochs=300, batch=8, imgsz=640):
 
       print(" Enhanced YOLOv8 Custom Dataset Training Başlıyor...")
       print("="*60)
@@ -329,7 +329,7 @@ def main():
         data_yaml= data_yaml,
         epochs=300,  # Colab için uygun
         imgsz=640,
-        batch=16   
+        batch=8   
     )
 
     # 3. Evaluation
